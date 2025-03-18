@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff; /* White background */
+}
+
+@layer base {
+  body {
+    background: var(--background); /* Apply the background color */
+  }
+} 
+
+a {
+  text-decoration: underline; /* Adds underline to all links */
+  color: blue; /* Default color for links */
+}
+
+a:hover {
+  color: darkblue; /* Color change when you hover over the link */
+}
+
