@@ -1,6 +1,7 @@
 "use client"; 
 import { useState } from "react";
 
+
 export default function ServiceCallFormAria() {
   const [formData, setFormData] = useState({
     requestType: "",
@@ -8,7 +9,7 @@ export default function ServiceCallFormAria() {
     title: "",
     description: "",
     accessInstructions: "",
-    bestTimes: "",
+    bestTime: "",
   });
 
   const [errors, setErrors] = useState({
@@ -46,17 +47,17 @@ export default function ServiceCallFormAria() {
         throw new Error("Failed to submit the form data");
       }
 
-      alert("Your service request has been submitted successfully!");
+      console.log("Your service request has been submitted successfully!");
       setFormData({
         requestType: "",
         priority: "",
         title: "",
         description: "",
         accessInstructions: "",
-        bestTimes: "",
+        bestTime: "",
       });
     }catch(error){
-      alert("Failed to submit the form data. Please try again later." + error);
+      console.log("Failed to submit the form data. Please try again later." + error);
     }
   };
 
@@ -153,8 +154,8 @@ export default function ServiceCallFormAria() {
         <textarea
           className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Specify convenient times for a maintenance visit..."
-          value={formData.bestTimes}
-          onChange={(e) => setFormData({ ...formData, bestTimes: e.target.value })}
+          value={formData.bestTime}
+          onChange={(e) => setFormData({ ...formData, bestTime: e.target.value })}
         ></textarea>
       </div>
 
