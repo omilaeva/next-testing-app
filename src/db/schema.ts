@@ -11,5 +11,9 @@ export const tickets = pgTable("tickets", {
     accessInstructions: varchar("access_instructions", { length: 255 }),
     description: varchar("description", { length: 500 }).notNull(),
     createdAt: timestamp("created_at").defaultNow(),
+    property: varchar("property", { length: 255 }),
+    unit: varchar("unit", { length: 255 }),
+    assignedTo: varchar("assigned_to", { length: 255 }),
+    status: varchar("status", { length: 255 }).default("Pending"),
     //userId: uuid("user_id").references(() => users.id, { onDelete: "cascade" }),
   });
