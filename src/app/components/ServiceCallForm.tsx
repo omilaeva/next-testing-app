@@ -18,9 +18,9 @@ export default function ServiceCallFormAria() {
     description: "",
   });
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let newErrors = { requestType: "", priority: "", title: "", description: "" };
+    const newErrors = { requestType: "", priority: "", title: "", description: "" };
 
     // Simple validation
     if (!formData.requestType) newErrors.requestType = "Please select a request type";
@@ -34,7 +34,30 @@ export default function ServiceCallFormAria() {
       return;
     }
 
-    console.log("Form submitted:", formData);
+    try{
+      // Submit the form data to the server
+      const response = await fetch("/api/tickets", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit the form data");
+      }
+
+      alert("Your service request has been submitted successfully!");
+      setFormData({
+        requestType: "",
+        priority: "",
+        title: "",
+        description: "",
+        accessInstructions: "",
+        bestTimes: "",
+      });
+    }catch(error){
+      alert("Failed to submit the form data. Please try again later." + error);
+    }
   };
 
   return (
