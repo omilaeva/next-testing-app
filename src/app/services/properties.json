@@ -1,0 +1,17 @@
+[
+  {
+    "id": "1",//36
+    "name": "Property 1",//255
+    "address": "Address 1"//255
+  },
+  {
+    "id": "2",//36
+    "name": "Property 2",//255
+    "address": "Address 2"//255
+  },
+  {
+    "id": "3",//36
+    "name": "Property 3",//255
+    "address": "Address 3"//255
+  }
+]
