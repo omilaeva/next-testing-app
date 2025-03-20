@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# next-testing-app
+The testing app using next.js, react and db
 
-## Getting Started
+## Structure of full stack next.js application
 
-First, run the development server:
+### 1️⃣ Frontend Code (Runs in the Browser)
+Frontend code is executed on the client-side (browser) and includes:\
+✅ Pages (except API routes)\
+✅ Components\
+✅ Hooks\
+✅ CSS/Styling\
+✅ Client-side API calls (fetch, axios)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**📌 Where to find frontend code?**
+- ```pages/index.tsx``` (or any other page files except pages/api/)\
+- ```components/``` (Reusable UI elements)\
+- ```hooks/``` (Custom React hooks)\
+- ```styles/``` (CSS files, Tailwind classes)\
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 2️⃣ Backend Code (Runs on the Server)
+Backend code is executed on the server and includes:\
+✅ API routes (pages/api/)\
+✅ Server-side functions (getServerSideProps, getStaticProps)\
+✅ Database queries\
+✅ Authentication & Authorization (e.g., NextAuth, JWT, OAuth)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**📌 Where to find backend code?**
 
-## Learn More
+- ```pages/api/``` (API endpoints, runs only on the server)
+- ```lib/``` (Database connections, helpers)
+- ```services/``` (Business logic for handling requests)
+- ```prisma/``` (ORM files, if using Prisma)
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Setting up drizzle ORM
+I used drizzle ORM with Neon databse. I set it up following the Drizzle ORM manual.
+https://orm.drizzle.team/docs/get-started/neon-new
 
-## Deploy on Vercel
+**Step 1: Install drizzle**
+npm i drizzle-orm @neondatabase/serverless dotenv
+npm i -D drizzle-kit tsx
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Step 2: Create Neon DB and get the link**
+https://console.neon.tech/
+  - Create an account
+  - Create project
+  - Copy the connection link
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Step 3: setup .env**
+Create a .env file in the root of your project and add your database connection link to:
+
+DATABASE_URL=
+
+**Step 4:**
+Push the schema to your database
+npx drizzle-kit push
+
+Rest of the process is setup it should work straight forward. 
+
+

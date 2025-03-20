@@ -9,9 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "next": "^15.2.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
+=======
+    "@vercel/postgres": "^0.10.0",
+    "dotenv": "^16.4.7",
+    "drizzle-orm": "^0.40.1",
+    "next": "^15.2.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.2"
+>>>>>>> 9f509f2193c47ba864d80f6fc3b4c15a4678c80c
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -19,9 +29,17 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+<<<<<<< HEAD
     "eslint": "^9",
     "eslint-config-next": "15.2.2",
     "tailwindcss": "^4",
+=======
+    "drizzle-kit": "^0.30.5",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.2",
+    "tailwindcss": "^4",
+    "tsx": "^4.19.3",
+>>>>>>> 9f509f2193c47ba864d80f6fc3b4c15a4678c80c
     "typescript": "^5"
   }
 }

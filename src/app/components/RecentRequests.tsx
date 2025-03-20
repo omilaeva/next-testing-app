@@ -1,23 +1,53 @@
 "use client";
 
 import React from "react";
+import { useState, useEffect } from "react";
 
 // Helper function for assigning Aria roles to the status
-const getStatusRole = (status) => {
-  switch (status) {
-    case "In Progress":
-      return "status-inprogress bg-blue-100 text-blue-600";
-    case "Completed":
-      return "status-completed bg-green-100 text-green-600";
-    case "Pending":
-      return "status-pending bg-yellow-100 text-yellow-600";
-    default:
-      return "";
-  }
+interface StatusRoleMap {
+  [key: string]: string;
+}
+
+const getStatusRole = (status: string): string => {
+  const statusRoleMap: StatusRoleMap = {
+    "In Progress": "status-inprogress bg-blue-100 text-blue-600",
+    "Completed": "status-completed bg-green-100 text-green-600",
+    "Pending": "status-pending bg-yellow-100 text-yellow-600",
+  };
+
+  return statusRoleMap[status] || "";
 };
 
 const RecentRequests = () => {
-  const tickets = [
+  interface Ticket {
+    id: string;
+    title: string;
+    status: string;
+    createdAt: string;
+    priority: string;
+  }
+  
+  const [tickets, setTickets] = useState<Ticket[]>([]);
+
+  useEffect(() => {
+    const fetchTickets = async () => {
+      try {
+        const response = await fetch("/api/tickets");
+        if (!response.ok) {
+          throw new Error("Failed to fetch ticket data");
+        }
+        const data = await response.json();
+        setTickets(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchTickets();
+  }, []);
+  
+  
+  /*const tickets = [
     {
       id: "#SR-2025-0127",
       title: "Leaking faucet in main bathroom",
@@ -39,7 +69,8 @@ const RecentRequests = () => {
       submitted: "Feb 24, 2025",
       priority: "Standard",
     },
-  ];
+  ];*/
+
 
   return (
     <div className="tickets mt-10">
@@ -76,7 +107,11 @@ const RecentRequests = () => {
               <span>ID: {ticket.id}</span>
             </div>
             <div className="info-item text-sm text-gray-600">
-              <span>Submitted: {ticket.submitted}</span>
+              <span>Submitted: {new Date(ticket.createdAt).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  })}</span>
             </div>
             <div className="info-item text-sm text-gray-600">
               <span>Priority: {ticket.priority}</span>

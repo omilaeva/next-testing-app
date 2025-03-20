@@ -8,7 +8,7 @@ export default function ServiceCallFormAria() {
     title: "",
     description: "",
     accessInstructions: "",
-    bestTimes: "",
+    bestTime: "",
   });
 
   const [errors, setErrors] = useState({
@@ -18,9 +18,9 @@ export default function ServiceCallFormAria() {
     description: "",
   });
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let newErrors = { requestType: "", priority: "", title: "", description: "" };
+    const newErrors = { requestType: "", priority: "", title: "", description: "" };
 
     // Simple validation
     if (!formData.requestType) newErrors.requestType = "Please select a request type";
@@ -34,7 +34,30 @@ export default function ServiceCallFormAria() {
       return;
     }
 
-    console.log("Form submitted:", formData);
+    try{
+      // Submit the form data to the server
+      const response = await fetch("/api/tickets", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit the form data");
+      }
+
+      console.log("Your service request has been submitted successfully!");
+      setFormData({
+        requestType: "",
+        priority: "",
+        title: "",
+        description: "",
+        accessInstructions: "",
+        bestTime: "",
+      });
+    }catch(error){
+      console.log("Failed to submit the form data. Please try again later." + error);
+    }
   };
 
   return (
@@ -130,8 +153,8 @@ export default function ServiceCallFormAria() {
         <textarea
           className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Specify convenient times for a maintenance visit..."
-          value={formData.bestTimes}
-          onChange={(e) => setFormData({ ...formData, bestTimes: e.target.value })}
+          value={formData.bestTime}
+          onChange={(e) => setFormData({ ...formData, bestTime: e.target.value })}
         ></textarea>
       </div>
 
