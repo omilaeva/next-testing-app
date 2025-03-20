@@ -53,6 +53,9 @@ Create a .env file in the root of your project and add your database connection 
 
 DATABASE_URL=
 
+Step 4:
+Push the schema to your database
+npx drizzle-kit push
 
 Rest of the process is setup it should work straight forward. 
 
