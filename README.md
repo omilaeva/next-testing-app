@@ -39,8 +39,9 @@ I used drizzle ORM with Neon databse. I set it up following the Drizzle ORM manu
 https://orm.drizzle.team/docs/get-started/neon-new
 
 **Step 1: Install drizzle**
-npm i drizzle-orm @neondatabase/serverless dotenv
-npm i -D drizzle-kit tsx
+
+  - npm i drizzle-orm @neondatabase/serverless dotenv
+  - npm i -D drizzle-kit tsx
 
 **Step 2: Create Neon DB and get the link**
 https://console.neon.tech/
