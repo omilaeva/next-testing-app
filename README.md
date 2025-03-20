@@ -31,3 +31,32 @@ Backend code is executed on the server and includes:\
 - ```lib/``` (Database connections, helpers)
 - ```services/``` (Business logic for handling requests)
 - ```prisma/``` (ORM files, if using Prisma)
+
+
+
+### Setting up drizzle ORM
+I used drizzle ORM with Neon databse. I set it up following the Drizzle ORM manual.
+https://orm.drizzle.team/docs/get-started/neon-new
+
+Step 1: Install drizzle
+npm i drizzle-orm @neondatabase/serverless dotenv
+npm i -D drizzle-kit tsx
+
+Step 2: Create Neon DB and get the link
+https://console.neon.tech/
+- Create an account
+- Create project
+- Copy the connection link
+
+Step 3: setup .env
+Create a .env file in the root of your project and add your database connection link to:
+
+DATABASE_URL=
+
+Step 4:
+Push the schema to your database
+npx drizzle-kit push
+
+Rest of the process is setup it should work straight forward. 
+
+
