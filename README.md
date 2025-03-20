@@ -38,22 +38,22 @@ Backend code is executed on the server and includes:\
 I used drizzle ORM with Neon databse. I set it up following the Drizzle ORM manual.
 https://orm.drizzle.team/docs/get-started/neon-new
 
-Step 1: Install drizzle
+**Step 1: Install drizzle**
 npm i drizzle-orm @neondatabase/serverless dotenv
 npm i -D drizzle-kit tsx
 
-Step 2: Create Neon DB and get the link
+**Step 2: Create Neon DB and get the link**
 https://console.neon.tech/
-- Create an account
-- Create project
-- Copy the connection link
+  - Create an account
+  - Create project
+  - Copy the connection link
 
-Step 3: setup .env
+**Step 3: setup .env**
 Create a .env file in the root of your project and add your database connection link to:
 
 DATABASE_URL=
 
-Step 4:
+**Step 4:**
 Push the schema to your database
 npx drizzle-kit push
 
