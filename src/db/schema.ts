@@ -1,12 +1,13 @@
-import {  pgTable, varchar,  timestamp, uuid  } from "drizzle-orm/pg-core";
+import {  pgTable, varchar, pgEnum, timestamp, uuid  } from "drizzle-orm/pg-core";
 
+export const priorityEnum = pgEnum("priority", ["emergency", "urgent", "standard", "low"]);
 
 
 export const tickets = pgTable("tickets", {
     id: uuid("id").primaryKey().defaultRandom(),
     title: varchar("title", { length: 255 }).notNull(),
     requestType: varchar("request_type", { length: 255 }).notNull(),
-    priority: varchar("priority", { length: 255 }).notNull(),
+    priority: priorityEnum("priority").notNull(),
     bestTime: varchar("best_time", { length: 255 }),
     accessInstructions: varchar("access_instructions", { length: 255 }),
     description: varchar("description", { length: 500 }).notNull(),
