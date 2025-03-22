@@ -3,9 +3,9 @@ import { eq, lt, gte, ne } from 'drizzle-orm';
 
 import { db } from "../../db/db";
 import {properties} from "../../db/schema";
-import {Properties} from "./definitions";
+import {Properties, Units} from "./definitions";
 //import {sql} from "./db";
-
+import {units} from "../../db/schema";
 
 export async function getAll():Promise<Properties[] | undefined>  {
     console.log("getAll");
@@ -39,6 +39,21 @@ export async function getOne(id : string) : Promise<Properties | undefined>{
     return row?.[0];
 }
 
+export async function getbyPropertyId(id : string) : Promise<Units[] | undefined> {
+    console.log("getbyPropertyId");
+
+    let rows : Units[] | undefined = undefined;
+    try {
+        rows =await db.select().from(units).where(eq(units.property_id,id));
+    }catch (error){
+        console.error(error);
+    }
+
+    console.log(rows)
+
+    return  rows;
+}
+
 export async function add(property : Properties) : Promise<Properties | undefined> {
 
     let newProperty: Properties[] | undefined = undefined;
@@ -62,4 +77,16 @@ export async function  remove(id: string): Promise<boolean>  {
         return false;
     }
     return true;
+}
+
+export async function getPropertiesJoinUnits(){
+    let rows ;
+    try {
+        rows =await db.select().from(properties).innerJoin(units, eq(properties.id, units.property_id));
+        console.log(rows);
+    } catch (error) {
+        console.error(error);
+        //return false;
+    }
+    return rows;
 }

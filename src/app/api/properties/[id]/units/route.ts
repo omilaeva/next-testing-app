@@ -1,6 +1,7 @@
 import { NextRequest } from 'next/server';
 import {Units} from "../../../../services/definitions";
-import * as service from '../../../../services/unitsServiceSQL';
+//import * as service from '../../../../services/unitsServiceSQL';
+import * as service from '../../../../services/propertiesServiceDrizzle';
 
 export async function GET(
     request: NextRequest,

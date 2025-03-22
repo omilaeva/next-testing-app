@@ -2,7 +2,7 @@
 import { eq, lt, gte, ne } from 'drizzle-orm';
 
 import { db } from "../../db/db";
-import {properties, units} from "../../db/schema";
+import { units} from "../../db/schema";
 import {sql} from './db';
 
 import {Units} from "./definitions";
@@ -48,20 +48,7 @@ export async function getOne(id : string) : Promise<Units | undefined>{
     return row?.[0];
 }
 
-export async function getbyPropertyId(id : string) : Promise<Units[] | undefined> {
-    console.log("getbyPropertyId");
 
-    let rows : Units[] | undefined = undefined;
-    try {
-        rows =await db.select().from(units).where(eq(units.property_id,id));
-    }catch (error){
-        console.error(error);
-    }
-
-    console.log(rows)
-
-    return  rows;
-}
 
 export async function add(unit : Units) : Promise<Units | undefined> {
 
@@ -79,7 +66,7 @@ export async function add(unit : Units) : Promise<Units | undefined> {
 
 export async function  remove(id: string): Promise<boolean>  {
     try {
-        await db.delete(properties).where(eq(properties.id,id));
+        await db.delete(units).where(eq(units.id,id));
     } catch (error) {
         console.error(error);
         return false;

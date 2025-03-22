@@ -1,7 +1,10 @@
 //import postgres from "postgres";
 import {sql} from './db';
 
-import {Properties} from "./definitions";
+import {Properties, Units} from "./definitions";
+import {db} from "../../db/db";
+import {units} from "../../db/schema";
+import {eq} from "drizzle-orm";
 
 /*CREATE TABLE properties (
   id CHAR(36) PRIMARY KEY,
@@ -45,6 +48,7 @@ export async function getOne(id : string) : Promise<Properties | undefined>{
 
     return row?.[0];
 }
+
 
 export async function add(property : Properties) : Promise<Properties | undefined> {
 
