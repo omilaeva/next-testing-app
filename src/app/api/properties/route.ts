@@ -1,6 +1,7 @@
 import { NextRequest } from 'next/server';
 //import * as service from '../../services/propertiesServiceArray';
-import * as service from '../../services/propertiesServiceSQL';
+//import * as service from '../../services/propertiesServiceSQL';
+import * as service from '../../services/propertiesServiceDrizzle';
 import {Properties} from "../../services/definitions";
 
 export async function GET(request: NextRequest) {

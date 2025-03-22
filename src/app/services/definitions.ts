@@ -18,5 +18,5 @@ export type Properties = {
 export type Units  = {
     id: string,//36
     name: string,//255
-    property_id: string,//36
+    property_id: string | null,//36
 }
