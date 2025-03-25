@@ -1,0 +1,52 @@
+"use client";
+import { useState } from "react";
+import Link from "next/link";
+
+const SidebarSuperUser = () => {
+  const [activeItem, setActiveItem] = useState<string | null>(null);
+
+  const handleItemClick = (item: string) => {
+    setActiveItem(item);
+  };
+
+  const menuItems = [
+    { name: "Customer Accounts", link: "/service-call-superuser-management/customer-accounts", icon: "📊" },
+    { name: "System Dashboard", link: "/dashboard", icon: "📈" },
+    { name: "Service Plans", link: "/service-plans", icon: "🔧" },
+    { name: "Billing & Invoices", link: "/billing", icon: "💰" },
+    { name: "User Management", link: "/user-management", icon: "👥" },
+    { name: "Reports & Analytics", link: "/reports", icon: "📝" },
+    { name: "Notifications", link: "/notifications", icon: "📧" },
+    { name: "Security & Access", link: "/security", icon: "🔒" },
+    { name: "System Settings", link: "/settings", icon: "⚙️" },
+  ];
+
+  return (
+     <aside className="w-64 h-full bg-white p-4 shadow-md">
+      <h2 className="text-lg font-semibold text-gray-700 mb-4">Administration</h2>
+      <nav>
+        <ul className="space-y-2 h-full font-semibold text-lg text-gray-900">
+          {menuItems.map((item) => (
+            <li
+              key={item.name}
+              onClick={() => handleItemClick(item.name)}
+              className={`cursor-pointer flex items-center space-x-2 p-3 rounded-lg transition-all duration-200
+                ${item.name === activeItem ? "bg-[#003366] text-white" : "text-gray-700"}
+                hover:bg-[#dbeafe] hover:text-gray-900`}
+            >
+              <span>{item.icon}</span>
+              <Link href= {item.link}>{item.name}</Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </aside>
+  );
+};
+
+export default SidebarSuperUser;
+
+
+
+
+
