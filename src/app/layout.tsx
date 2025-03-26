@@ -14,7 +14,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <Header />  {/* This will be rendered on all pages */}
 
           {/* Main Content */}
-          <main className="flex-1 container mx-auto p-8">  {/* Take available space */}
+          <main className="flex-1 container max-w-[1440px]  mx-auto p-8">  {/* Take available space */}
             {children}  {/* Render the page content here */}
           </main>
 
