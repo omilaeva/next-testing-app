@@ -2,6 +2,7 @@
 
 import Header from '@components/Header'; 
 import SideBar from '@components/SideBar';
+import  ServiceCallDetailsComponent from '@components/ServiceCallDetails';
 
 export default function ServiceCallDetails() {
   return (
@@ -19,9 +20,10 @@ export default function ServiceCallDetails() {
         <div className="flex-1 p-8 bg-blue-50">
           <main className="w-full max-w-4xl p-6 bg-white rounded-lg shadow-md">
             {/* Static Service Call Details Content */}
-            <h1>Service Call Management and History</h1>
+            <ServiceCallDetailsComponent />
+            {/*<h1>Service Call Management and History</h1>
             <p>This page displays service call management and history for owners. You can view status, history, and other details of the service calls here.</p>
-            <p>Dynamic routing can be used to fetch and display content based on the ticket ID. Each URL with a different ticket ID will show a different service call's details.</p>
+            <p>Dynamic routing can be used to fetch and display content based on the ticket ID. Each URL with a different ticket ID will show a different service call's details.</p> */}
           </main>
         </div>
       </div>
